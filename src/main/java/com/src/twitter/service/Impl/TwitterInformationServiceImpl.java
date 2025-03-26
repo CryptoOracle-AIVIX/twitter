@@ -70,7 +70,7 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
 
     @Override
     public List<TwitterSentimentNew15Min> sentimentList() {
-        return twitterSentimentNew15Min.selectList(null);
+        return twitterSentimentNew15Min.sentimentList();
     }
 
     @Override

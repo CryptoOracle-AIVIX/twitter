@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper
 public interface SysConfigMapper extends BaseMapper<SysConfig> {
 
-    @Select("SELECT *, set_time AS setTime FROM sys.sys_config")
+    @Select("SELECT value,variable,set_time AS setTime,set_by as setBy FROM sys.sys_config")
     List<SysConfig> configList();
 }

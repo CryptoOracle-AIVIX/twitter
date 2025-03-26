@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/twitter")
-@Tag(name = "Token API", description = "管理 Token 信息的接口")
+@Tag(name = "twitter API", description = "管理 twitter 信息的接口")
 public class TwitterInformationController {
 
 
@@ -27,7 +27,6 @@ public class TwitterInformationController {
     TwitterInformationService twitterInformationService;
 
     @GetMapping("/result/list")
-    @Operation(summary = "获取 Token 列表", description = "查询数据库中的所有 Token 信息")
     public ResponseEntity<List<ChannelAnalysisResult>> ChannelList(){
         return ResponseEntity.ok(twitterInformationService.ChannelList());
     }

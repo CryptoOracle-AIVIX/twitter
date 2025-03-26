@@ -1,0 +1,112 @@
+package com.src.twitter.service.Impl;
+
+
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.src.twitter.common.DataSourceContextHolder;
+import com.src.twitter.entity.*;
+import com.src.twitter.mapper.*;
+import com.src.twitter.service.TwitterInformationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class TwitterInformationServiceImpl implements TwitterInformationService {
+
+    @Autowired
+    SysConfigMapper sysConfigMapper;
+
+    @Autowired
+    TwitterPostGerSQLMapper twitterPostGerSQLMapper;
+
+    @Autowired
+    NewTokenMetadataMapper newTokenMetadataMapper;
+
+    @Autowired
+    GroupMessagesMapper groupMessagesMapper;
+
+    @Autowired
+    TwitterDataCollectionMapper twitterDataCollectionMapper;
+
+    @Autowired
+    TwitterKolUserInfoMapper twitterKolUserInfo;
+    @Autowired
+    TwitterSentimentNew15MinMapper twitterSentimentNew15Min;
+    @Autowired
+    TwitterSummarizeCryptoSentiment15MinMapper twitterSummarizeCryptoSentiment15Min;
+    @Autowired
+    TwitterSummarizeCryptoSentimentHourlyMapper twitterSummarizeCryptoSentimentHourly;
+
+    @Autowired
+    TwitterInformationMapper twitterInformationMapper;
+
+    @Autowired
+    TwitterInformationResultMapper twitterInformationResultMapper;
+
+
+    @Override
+    public List<ChannelAnalysisResult> ChannelList() {
+        return twitterInformationResultMapper.ChannelList();
+    }
+
+    @Override
+    public List<ChannelRawData> formationList() {
+        return twitterInformationMapper.formationList();
+    }
+
+    @Override
+    public List<SysConfig> configList() {
+        return sysConfigMapper.configList();
+    }
+
+    @Override
+    public List<TwitterKolUserInfo> userInfoList() {
+        return twitterKolUserInfo.userInfoList();
+    }
+
+    @Override
+    public List<TwitterSentimentNew15Min> sentimentList() {
+        return twitterSentimentNew15Min.selectList(null);
+    }
+
+    @Override
+    //每小时新闻摘要
+    public List<TwitterSummarizeCryptoSentimentHourly> hourlyList(String search) {
+        return twitterSummarizeCryptoSentimentHourly.hourlyList(search);
+    }
+
+    @Override
+    public List<TwitterDataCollection> collectionList() {
+        return twitterDataCollectionMapper.collectionList();
+    }
+
+    @Override
+    public List<ChannelUpdates> channelUpdateList() {
+        DataSourceContextHolder.setDataSourceType("postgresql");
+        return twitterPostGerSQLMapper.channelUpdateList();
+    }
+
+    @Override
+    public List<GroupMessages> groupList() {
+        DataSourceContextHolder.setDataSourceType("postgresql");
+        return groupMessagesMapper.groupList();
+    }
+
+    @Override
+    public List<NewTokenMetadata> tokenList() {
+        System.out.println("Mapper 是否为空：" + (newTokenMetadataMapper == null));
+        DataSourceContextHolder.setDataSourceType("postgresql");
+        return newTokenMetadataMapper.tokenList();
+    }
+
+    @Override
+    public List<TwitterSummarizeCryptoSentiment15Min> cryptoList(String search, int pageNum, int pageSize) {
+        // 计算分页偏移量
+        int offset = (pageNum - 1) * pageSize;
+        return twitterSummarizeCryptoSentiment15Min.cryptoList(search,offset,pageSize);
+    }
+}

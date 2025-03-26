@@ -1,0 +1,47 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://coracle-mysql.chgc6owgc8vg.ap-southeast-2.rds.amazonaws.com:3306/twitter?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#    username: admin
+#    password: 1YWTZ0t5wqfqzWzhyQzR
+#  jpa:
+#    hibernate:
+#      ddl-auto: update  # 自动更新数据库结构（可选：none, update, create, create-drop）
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect  # 使用MySQL的方言
+#    show-sql: true  # 显示执行的SQL语句
+#    generate-ddl: true  # 是否生成数据库DDL
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # 指定方言
+
+#    dynamic:
+#      primary: mysql-one   # 默认数据源
+#      strict: false  # 先关闭 strict，确保数据源能够正常匹配
+#      datasource:
+#        mysql-one:
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://coracle-mysql.chgc6owgc8vg.ap-southeast-2.rds.amazonaws.com:3306/sys?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#          username: admin
+#          password: 1YWTZ0t5wqfqzWzhyQzR
+#        postgresql:
+#          driver-class-name: org.postgresql.Driver
+#          url: jdbc:postgresql://coracle-postgre.chgc6owgc8vg.ap-southeast-2.rds.amazonaws.com:5432/postgres
+#          username: postgres
+#          password: Di1uQQa4eF5TJgird905
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      min-spare: 10
+      max: 200
+
+# 打印 SQL 语句
+logging:
+  level:
+    com.ganhuoshitang.multipledatasources.mapper: debug
+springdoc:
+  api-docs:
+   enabled: true  # 启用 Swagger 文档
+  swagger-ui:
+    path: /swagger-ui.html  # Swagger UI 访问路径

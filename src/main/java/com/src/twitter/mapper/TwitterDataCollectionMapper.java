@@ -60,8 +60,7 @@ public interface TwitterDataCollectionMapper extends BaseMapper<TwitterDataColle
             "is_retweeted AS isRetweeted, " +
             "can_reply AS canReply, " +
             "matched_keywords AS matchedKeywords, " +
-            "rn, " +
-            "dao_name AS daoName " +
+            "rn " +
             "FROM twitter.twitter_data_collection")
     List<TwitterDataCollection> collectionList();
 

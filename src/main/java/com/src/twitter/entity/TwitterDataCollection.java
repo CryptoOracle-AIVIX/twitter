@@ -166,6 +166,4 @@ public class TwitterDataCollection {
     @TableField("rn")
     private Long rn;
 
-    @TableField("dao_name")
-    private String daoName;
 }

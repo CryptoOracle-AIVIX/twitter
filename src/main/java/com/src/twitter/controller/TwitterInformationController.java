@@ -26,6 +26,12 @@ public class TwitterInformationController {
     @Autowired
     TwitterInformationService twitterInformationService;
 
+    @GetMapping("/count/sum")
+    @Operation(summary = "首页展示条数", description = "查看twitter所有数据的总和")
+    public ResponseEntity<String> countSum(){
+        return ResponseEntity.ok(twitterInformationService.countSum());
+    }
+
     @GetMapping("/result/list")
     public ResponseEntity<List<ChannelAnalysisResult>> ChannelList(){
         return ResponseEntity.ok(twitterInformationService.ChannelList());

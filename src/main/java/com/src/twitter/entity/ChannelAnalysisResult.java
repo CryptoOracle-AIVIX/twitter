@@ -52,4 +52,8 @@ public class ChannelAnalysisResult implements Serializable {
     @TableField("chat_user_survivability")
     private BigDecimal chatUserSurvivability;
 
+
+    private Long TotalTreasury;
+    private Long TotalHolders;
+
 }

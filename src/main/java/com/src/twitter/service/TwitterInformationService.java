@@ -28,4 +28,6 @@ public interface TwitterInformationService {
     List<NewTokenMetadata> tokenList();
 
     List<TwitterSummarizeCryptoSentiment15Min> cryptoList(String search, int pageNum, int pageSize);
+
+    String countSum();
 }

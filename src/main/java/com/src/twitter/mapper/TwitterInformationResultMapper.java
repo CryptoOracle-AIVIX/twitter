@@ -11,19 +11,26 @@ import java.util.List;
 public interface TwitterInformationResultMapper extends BaseMapper<ChannelAnalysisResult> {
 
 
+    @Select("select count(*) from twitter.twitter_data_collection")
+    String countSum();
+
     @Select("SELECT " +
-            "dao_name AS daoName, " +
-            "date, " +
-            "chat_msg_num AS chatMsgNum, " +
-            "chat_user_num AS chatUserNum, " +
-            "chat_struct_flow_hierarchy AS chatStructFlowHierarchy, " +
-            "chat_struct_cent_outdegree AS chatStructCentOutdegree, " +
-            "chat_struct_cent_betweenness AS chatStructCentBetweenness, " +
-            "chat_struct_cent_outcloseness AS chatStructCentOutcloseness, " +
-            "chat_struct_cluster_coeff AS chatStructClusterCoeff, " +
-            "chat_struct_transitivity AS chatStructTransitivity, " +
-            "chat_user_survivability AS chatUserSurvivability " +
-            "FROM discord.channel_analysis_result")
+            "c.dao_name AS daoName, " +
+            "(SELECT SUM(chat_user_num) FROM discord.channel_analysis_result) AS TotalHolders, " +
+            "(SELECT SUM(chat_msg_num) FROM discord.channel_analysis_result) AS TotalTreasury, " +
+            "c.date, " +
+            "c.chat_msg_num AS chatMsgNum, " +
+            "c.chat_user_num AS chatUserNum, " +
+            "c.chat_struct_flow_hierarchy AS chatStructFlowHierarchy, " +
+            "c.chat_struct_cent_outdegree AS chatStructCentOutdegree, " +
+            "c.chat_struct_cent_betweenness AS chatStructCentBetweenness, " +
+            "c.chat_struct_cent_outcloseness AS chatStructCentOutcloseness, " +
+            "c.chat_struct_cluster_coeff AS chatStructClusterCoeff, " +
+            "c.chat_struct_transitivity AS chatStructTransitivity, " +
+            "c.chat_user_survivability AS chatUserSurvivability " +
+            "FROM discord.channel_analysis_result c ")
     List<ChannelAnalysisResult> ChannelList();
+
+
 
 }

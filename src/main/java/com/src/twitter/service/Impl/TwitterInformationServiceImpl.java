@@ -109,4 +109,9 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
         int offset = (pageNum - 1) * pageSize;
         return twitterSummarizeCryptoSentiment15Min.cryptoList(search,offset,pageSize);
     }
+
+    @Override
+    public String countSum() {
+        return twitterInformationResultMapper.countSum();
+    }
 }

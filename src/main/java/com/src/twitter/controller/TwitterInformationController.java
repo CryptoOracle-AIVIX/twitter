@@ -54,8 +54,8 @@ public class TwitterInformationController {
     }
 
     @GetMapping("/sentiment/list")
-    public ResponseEntity<List<TwitterSentimentNew15Min>> sentimentList(){
-        return ResponseEntity.ok(twitterInformationService.sentimentList());
+    public ResponseEntity<List<TwitterSentimentNew15Min>> sentimentList(@RequestParam(value = "search",required = false) String search){
+        return ResponseEntity.ok(twitterInformationService.sentimentList(search));
     }
 
     @GetMapping("/collection/list")

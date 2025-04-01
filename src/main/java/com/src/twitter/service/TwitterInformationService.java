@@ -15,7 +15,7 @@ public interface TwitterInformationService {
 
     List<TwitterKolUserInfo> userInfoList();
 
-    List<TwitterSentimentNew15Min> sentimentList();
+    List<TwitterSentimentNew15Min> sentimentList(String search);
 
 
     List<TwitterSummarizeCryptoSentimentHourly> hourlyList(String search);

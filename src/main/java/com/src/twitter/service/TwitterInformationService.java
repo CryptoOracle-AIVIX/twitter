@@ -1,6 +1,7 @@
 package com.src.twitter.service;
 
 import com.src.twitter.entity.*;
+import com.src.twitter.vo.res.TokenListDayRes;
 
 import java.util.List;
 
@@ -30,4 +31,6 @@ public interface TwitterInformationService {
     List<TwitterSummarizeCryptoSentiment15Min> cryptoList(String search, int pageNum, int pageSize);
 
     String countSum();
+
+    List<TokenListDayRes> tokenListDay();
 }

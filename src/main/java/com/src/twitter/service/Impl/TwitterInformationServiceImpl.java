@@ -8,6 +8,7 @@ import com.src.twitter.common.DataSourceContextHolder;
 import com.src.twitter.entity.*;
 import com.src.twitter.mapper.*;
 import com.src.twitter.service.TwitterInformationService;
+import com.src.twitter.vo.res.TokenListDayRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -113,5 +114,10 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
     @Override
     public String countSum() {
         return twitterInformationResultMapper.countSum();
+    }
+
+    @Override
+    public List<TokenListDayRes> tokenListDay() {
+        return twitterInformationResultMapper.tokenListDay();
     }
 }

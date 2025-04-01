@@ -3,6 +3,7 @@ package com.src.twitter.mapper;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.src.twitter.entity.ChannelAnalysisResult;
+import com.src.twitter.vo.res.TokenListDayRes;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,5 +33,6 @@ public interface TwitterInformationResultMapper extends BaseMapper<ChannelAnalys
     List<ChannelAnalysisResult> ChannelList();
 
 
-
+    @Select("select count(*) as discussant,sum(chat_user_num) as voter,sum(chat_msg_num) as chatter,date  FROM discord.channel_analysis_result group by date")
+    List<TokenListDayRes> tokenListDay();
 }

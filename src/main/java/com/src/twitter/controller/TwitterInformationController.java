@@ -3,6 +3,7 @@ package com.src.twitter.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.src.twitter.entity.*;
 import com.src.twitter.service.TwitterInformationService;
+import com.src.twitter.vo.res.TokenListDayRes;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +74,7 @@ public class TwitterInformationController {
     @GetMapping("/hourly/list")
     //没小时新闻摘要
     @Operation(summary = "每小时总结的新闻", description = "查询数据库中的小时内的信息")
-    public ResponseEntity<List<TwitterSummarizeCryptoSentimentHourly>> hourlyList(@RequestParam("search") String search){
+    public ResponseEntity<List<TwitterSummarizeCryptoSentimentHourly>> hourlyList(@RequestParam(value = "search",required = false) String search){
         return ResponseEntity.ok(twitterInformationService.hourlyList(search));
     }
 
@@ -92,6 +93,10 @@ public class TwitterInformationController {
         return ResponseEntity.ok(twitterInformationService.tokenList());
     }
 
+    @GetMapping("/result/list/day")
+    public ResponseEntity<List<TokenListDayRes>> tokenListDay(){
+        return ResponseEntity.ok(twitterInformationService.tokenListDay());
+    }
 
 }
 

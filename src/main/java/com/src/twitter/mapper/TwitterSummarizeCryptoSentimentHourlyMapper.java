@@ -10,11 +10,12 @@ import java.util.List;
 
 public interface TwitterSummarizeCryptoSentimentHourlyMapper extends BaseMapper<TwitterSummarizeCryptoSentimentHourly> {
     @Select("<script>" +
-            "SELECT *,summary_time as summaryTime " +
+            "SELECT *, summary_time as summaryTime " +
             "FROM twitter.twitter_summarize_crypto_sentiment_hourly " +
-            "WHERE " +
+            "WHERE 1=1 " +  // 避免 WHERE 关键字单独存在
             "<if test='search != null and search.trim() != \"\"'>" +
-            "(summary_time LIKE CONCAT('%', #{search}, '%') " +
+            "AND (" +
+            "summary_time LIKE CONCAT('%', #{search}, '%') " +
             "OR keywords LIKE CONCAT('%', #{search}, '%') " +
             "OR positive LIKE CONCAT('%', #{search}, '%') " +
             "OR neutral LIKE CONCAT('%', #{search}, '%') " +
@@ -22,5 +23,6 @@ public interface TwitterSummarizeCryptoSentimentHourlyMapper extends BaseMapper<
             "</if>" +
             "</script>")
     List<TwitterSummarizeCryptoSentimentHourly> hourlyList(@Param("search") String search);
+
 
 }

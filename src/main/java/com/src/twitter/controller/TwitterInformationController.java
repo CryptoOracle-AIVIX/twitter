@@ -76,7 +76,6 @@ public class TwitterInformationController {
     }
 
     @GetMapping("/hourly/list")
-    //没小时新闻摘要
     @Operation(summary = "每小时总结的新闻", description = "查询数据库中的小时内的信息")
     public ResponseEntity<List<TwitterSummarizeCryptoSentimentHourly>> hourlyList(@RequestParam(value = "search",required = false) String search){
         return ResponseEntity.ok(twitterInformationService.hourlyList(search));

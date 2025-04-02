@@ -29,7 +29,16 @@
 #          username: postgres
 #          password: Di1uQQa4eF5TJgird905
 server:
-  port: 8080
+  ssl:
+    key-store: classpath:myssl.p12       # 指定证书路径，"classpath" 表示从项目的资源目录中加载
+    key-store-password: twitter2025    # 证书的密码（即你在创建证书时输入的密码）
+    key-store-type: PKCS12               # 证书存储类型（PKCS12）
+    key-alias: myssl                     # 别名，通常是你在生成证书时指定的别名（如 myssl）
+    key-password: twitter2025          # 密钥的密码，如果和密钥库密码相同，可以不写
+    enabled: true                        # 启用 HTTPS
+  port: 8080                     # HTTPS 默认端口是 8443
+
+
   tomcat:
     uri-encoding: UTF-8
     threads:

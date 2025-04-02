@@ -70,8 +70,10 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
     }
 
     @Override
-    public List<TwitterSentimentNew15Min> sentimentList(String search) {
-        return twitterSentimentNew15Min.sentimentList(search);
+    public List<TwitterSentimentNew15Min> sentimentList(String search, int pageNum, int pageSize) {
+        // 计算分页偏移量
+        int offset = (pageNum - 1) * pageSize;
+        return twitterSentimentNew15Min.sentimentList(search,offset,pageSize);
     }
 
     @Override
@@ -81,8 +83,10 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
     }
 
     @Override
-    public List<TwitterDataCollection> collectionList() {
-        return twitterDataCollectionMapper.collectionList();
+    public List<TwitterDataCollection> collectionList( int pageNum, int pageSize) {
+        // 计算分页偏移量
+        int offset = (pageNum - 1) * pageSize;
+        return twitterDataCollectionMapper.collectionList(offset,pageSize);
     }
 
     @Override

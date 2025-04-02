@@ -12,6 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface TwitterSentimentNew15MinMapper extends BaseMapper<TwitterSentimentNew15Min> {
+
     @Select({
             "<script>",
             "SELECT * FROM twitter.twitter_sentiment_new_15min",
@@ -29,7 +30,8 @@ public interface TwitterSentimentNew15MinMapper extends BaseMapper<TwitterSentim
             ")",
             "</if>",
             "</where>",
+            "LIMIT #{pageSize} OFFSET #{offset}",
             "</script>"
     })
-    List<TwitterSentimentNew15Min> sentimentList(@Param("search") String search);
+    List<TwitterSentimentNew15Min> sentimentList(@Param("search") String search, @Param("offset") int offset, @Param("pageSize") int pageSize);
 }

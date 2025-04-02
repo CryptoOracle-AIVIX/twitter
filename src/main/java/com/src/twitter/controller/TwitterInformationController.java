@@ -54,13 +54,17 @@ public class TwitterInformationController {
     }
 
     @GetMapping("/sentiment/list")
-    public ResponseEntity<List<TwitterSentimentNew15Min>> sentimentList(@RequestParam(value = "search",required = false) String search){
-        return ResponseEntity.ok(twitterInformationService.sentimentList(search));
+    public ResponseEntity<List<TwitterSentimentNew15Min>> sentimentList(@RequestParam(value = "search",required = false) String search,
+                                                                        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize
+                                                                        ){
+        return ResponseEntity.ok(twitterInformationService.sentimentList(search,pageNum,pageSize));
     }
 
     @GetMapping("/collection/list")
-    public ResponseEntity<List<TwitterDataCollection>> collectionList(){
-        return ResponseEntity.ok(twitterInformationService.collectionList());
+    public ResponseEntity<List<TwitterDataCollection>> collectionList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                                                      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+        return ResponseEntity.ok(twitterInformationService.collectionList(pageNum,pageSize));
     }
 
     @GetMapping("/crypto/list")

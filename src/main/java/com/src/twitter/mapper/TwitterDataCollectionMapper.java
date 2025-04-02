@@ -4,12 +4,14 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.src.twitter.entity.TwitterDataCollection;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 @Mapper
 public interface TwitterDataCollectionMapper extends BaseMapper<TwitterDataCollection> {
+
     @Select("SELECT " +
             "id, " +
             "author_id AS authorId, " +
@@ -61,7 +63,7 @@ public interface TwitterDataCollectionMapper extends BaseMapper<TwitterDataColle
             "can_reply AS canReply, " +
             "matched_keywords AS matchedKeywords, " +
             "rn " +
-            "FROM twitter.twitter_data_collection")
-    List<TwitterDataCollection> collectionList();
+            "FROM twitter.twitter_data_collection LIMIT #{pageSize} OFFSET #{offset}")
+             List<TwitterDataCollection> collectionList(@Param("offset") int offset, @Param("pageSize") int pageSize);
 
 }

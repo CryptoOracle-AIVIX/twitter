@@ -15,12 +15,12 @@ public interface TwitterInformationService {
 
     List<TwitterKolUserInfo> userInfoList();
 
-    List<TwitterSentimentNew15Min> sentimentList(String search);
+    List<TwitterSentimentNew15Min> sentimentList(String search, int pageNum, int pageSize);
 
 
     List<TwitterSummarizeCryptoSentimentHourly> hourlyList(String search);
 
-    List<TwitterDataCollection> collectionList();
+    List<TwitterDataCollection> collectionList( int pageNum, int pageSize);
 
     List<ChannelUpdates> channelUpdateList();
 

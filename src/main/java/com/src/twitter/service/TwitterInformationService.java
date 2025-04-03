@@ -33,4 +33,6 @@ public interface TwitterInformationService {
     String countSum();
 
     List<TokenListDayRes> tokenListDay();
+
+    Boolean mailboxInstall(TwitterMailbox twitterMailbox);
 }

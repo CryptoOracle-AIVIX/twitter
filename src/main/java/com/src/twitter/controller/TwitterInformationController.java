@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,12 @@ public class TwitterInformationController {
     @Operation(summary = "首页展示条数", description = "查看twitter所有数据的总和")
     public ResponseEntity<String> countSum(){
         return ResponseEntity.ok(twitterInformationService.countSum());
+    }
+
+    @PostMapping("/mailbox/install")
+    @Operation(summary = "首页邮箱新增", description = "记录当前页的邮箱到数据库")
+    public ResponseEntity<Boolean> mailboxInstall(@RequestBody TwitterMailbox twitterMailbox){
+        return ResponseEntity.ok(twitterInformationService.mailboxInstall(twitterMailbox));
     }
 
     @GetMapping("/result/list")

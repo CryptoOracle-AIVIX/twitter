@@ -12,14 +12,20 @@ import com.src.twitter.vo.res.TokenListDayRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TwitterInformationServiceImpl implements TwitterInformationService {
 
     @Autowired
     SysConfigMapper sysConfigMapper;
+
+    @Autowired
+    TwitterMailboxMapper twitterMailboxMapper;
 
     @Autowired
     TwitterPostGerSQLMapper twitterPostGerSQLMapper;
@@ -123,5 +129,12 @@ public class TwitterInformationServiceImpl implements TwitterInformationService 
     @Override
     public List<TokenListDayRes> tokenListDay() {
         return twitterInformationResultMapper.tokenListDay();
+    }
+
+    @Override
+    public Boolean mailboxInstall(TwitterMailbox twitterMailbox) {
+        twitterMailbox.setId(UUID.randomUUID().toString());
+        twitterMailbox.setCreateDate(new Timestamp(System.currentTimeMillis()));
+        return twitterMailboxMapper.mailboxInstall(twitterMailbox);
     }
 }

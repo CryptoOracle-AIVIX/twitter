@@ -128,11 +128,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot Security Starter (如果需要 SSL 安全配置) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
